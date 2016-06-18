@@ -4,14 +4,39 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context="com.software.studio.delicacies.fragments.Search">
+    tools:context="com.software.studio.delicacies.fragments.Search"
+    android:weightSum="1">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="80dp">
+
+
+         <EditText
+        android:layout_width="305dp"
+        android:layout_height="40dp"
+        android:id="@+id/search_edittext"
+        android:background="@drawable/edittext_style"
+        android:layout_marginBottom="120dp"
+        android:imeOptions="actionDone"
+        android:singleLine="true" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Search"
+            android:id="@+id/button"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
     <TextView
         android:id="@+id/tv_search"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:gravity="center"
         android:textSize="20sp"
-        android:text="這是搜尋" />
+        android:text="這是搜尋"
+        android:layout_marginBottom="130dp" />
 
 </LinearLayout>
