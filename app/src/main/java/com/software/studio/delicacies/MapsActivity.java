@@ -1,14 +1,22 @@
 package com.software.studio.delicacies;
 
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -36,11 +44,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        Intent intent = this.getIntent();
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        String locationName = intent.getStringExtra("LocationName");
+        Toast.makeText(getBaseContext(), locationName, Toast.LENGTH_SHORT).show();
+        LocationNameToMarker(locationName);
     }
+
+    private void LocationNameToMarker(String locationName){
+        mMap.clear();
+        Geocoder geocoder = new Geocoder(getBaseContext());
+        List<Address> addressList = null;
+        int maxResult = 1;
+        try {
+            // 翻譯地址可能回傳多種結果，所以回傳 List
+            // maxResult = 1 最多回傳一筆
+            addressList = geocoder.getFromLocationName(locationName, maxResult);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(addressList == null || addressList.isEmpty()) {
+            Toast.makeText(getBaseContext(), R.string.msg_LocationNameNotFound, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            // 因為只有一筆資料
+            Address address = addressList.get(0);
+
+            // 取得經緯度
+            LatLng position = new LatLng(address.getLatitude(), address.getLongitude());
+
+            // 將地址當作標記的描述文字
+            String snippet = address.getAddressLine(0);
+
+            // 將地址在地圖上標紀
+            mMap.addMarker(new MarkerOptions().position(position).title(locationName).snippet(snippet));
+
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(position).zoom(15).build();
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+    }
+
 }

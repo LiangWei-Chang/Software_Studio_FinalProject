@@ -16,6 +16,7 @@ import com.software.studio.delicacies.R;
 public class Search extends Fragment implements View.OnClickListener {
     EditText editText;
     ImageButton button;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_search, container, false);
@@ -24,22 +25,23 @@ public class Search extends Fragment implements View.OnClickListener {
         editText.setHint("  Please type keyword for searching");
         editText.setOnClickListener(this);
         button.setOnClickListener(this);
-
         return view;
     }
 
 
     public void onClick(View v) {
-        if(v == editText)
-        {
+        if(v == editText) {
             editText.getText().clear();
-        }else if(v == button)
-        {
-            Toast.makeText(getActivity(),editText.getText().toString(),Toast.LENGTH_SHORT).show();
+        }
+        else if(v == button) {
             if(editText.getText().length()!=0)
             {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MapsActivity.class);
+                intent.putExtra("LocationName", editText.getText().toString());
                 startActivity(intent);
+            }
+            else{
+                Toast.makeText(getActivity(), R.string.msg_InputIsEmpty, Toast.LENGTH_SHORT).show();
             }
         }
     }
