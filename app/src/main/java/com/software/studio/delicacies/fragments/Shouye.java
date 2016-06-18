@@ -2,17 +2,46 @@ package com.software.studio.delicacies.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.software.studio.delicacies.R;
+import com.software.studio.delicacies.RecycleViewAdapter;
 
 public class Shouye extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_shouye, container, false);
-        return view;
+        RecyclerView.LayoutManager mLayoutManager;
+        RecyclerView.Adapter mAdapter;
+
+        String[] data = {
+                "Delicacy1",
+                "Delicacy2",
+                "Delicacy3",
+                "Delicacy4",
+                "Delicacy5",
+                "Delicacy6",
+                "Delicacy7",
+                "Delicacy8",
+                "Delicacy9",
+                "Delicacy10",
+        };
+
+        View rootView = inflater.inflate(R.layout.fragment_shouye, container, false);
+
+        // Get a reference to RecyclerView
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.shouye_recycler_view);
+
+        mLayoutManager = new LinearLayoutManager(container.getContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new RecycleViewAdapter(data);
+        recyclerView.setAdapter(mAdapter);
+
+        return rootView;
     }
 }
