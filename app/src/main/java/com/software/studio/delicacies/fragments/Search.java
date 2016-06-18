@@ -1,5 +1,6 @@
 package com.software.studio.delicacies.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.software.studio.delicacies.MapsActivity;
 import com.software.studio.delicacies.R;
 
 public class Search extends Fragment implements View.OnClickListener {
@@ -36,6 +38,11 @@ public class Search extends Fragment implements View.OnClickListener {
         }else if(v == bt)
         {
             Toast.makeText(getActivity(),et.getText().toString(),Toast.LENGTH_SHORT).show();
+            if(et.getText().length()!=0)
+            {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+            }
         }
     }
 }
