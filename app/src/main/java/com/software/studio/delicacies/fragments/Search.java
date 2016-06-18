@@ -4,41 +4,39 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.software.studio.delicacies.MapsActivity;
 import com.software.studio.delicacies.R;
 
 public class Search extends Fragment implements View.OnClickListener {
-    EditText et;
-    Button bt;
+    EditText editText;
+    ImageButton button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_search, container, false);
-         et = (EditText) view.findViewById(R.id.search_edittext);
-        bt = (Button) view.findViewById(R.id.button);
-        et.setHint("Please type keyword for searching");
-        et.setOnClickListener(this);
-        bt.setOnClickListener(this);
+        editText = (EditText) view.findViewById(R.id.search_edittext);
+        button = (ImageButton) view.findViewById(R.id.image_button_search);
+        editText.setHint("  Please type keyword for searching");
+        editText.setOnClickListener(this);
+        button.setOnClickListener(this);
 
         return view;
     }
 
 
     public void onClick(View v) {
-        if(v == et)
+        if(v == editText)
         {
-            et.getText().clear();
-        }else if(v == bt)
+            editText.getText().clear();
+        }else if(v == button)
         {
-            Toast.makeText(getActivity(),et.getText().toString(),Toast.LENGTH_SHORT).show();
-            if(et.getText().length()!=0)
+            Toast.makeText(getActivity(),editText.getText().toString(),Toast.LENGTH_SHORT).show();
+            if(editText.getText().length()!=0)
             {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MapsActivity.class);
                 startActivity(intent);
