@@ -1,5 +1,6 @@
 package com.software.studio.delicacies.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.software.studio.delicacies.DetailActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
 
@@ -16,7 +18,7 @@ public class Shouye extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView.LayoutManager mLayoutManager;
-        RecyclerView.Adapter mAdapter;
+        RecycleViewAdapter mAdapter;
 
         String[] data = {
                 "Delicacy1",
@@ -41,7 +43,14 @@ public class Shouye extends Fragment {
 
         mAdapter = new RecycleViewAdapter(data);
         recyclerView.setAdapter(mAdapter);
-
+        mAdapter.setOnItemClickListener(new RecycleViewAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, String data) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
+                intent.putExtra("name", data);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 }

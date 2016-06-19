@@ -47,7 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = this.getIntent();
         mMap = googleMap;
         String locationName = intent.getStringExtra("LocationName");
-        Toast.makeText(getBaseContext(), locationName, Toast.LENGTH_SHORT).show();
         LocationNameToMarker(locationName);
     }
 
