@@ -13,4 +13,14 @@
         android:id="@+id/img_wheels"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.37" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/spin_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
+
 </LinearLayout>
