@@ -3,15 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
-    tools:context="com.software.studio.delicacies.fragments.Favorite">
+    android:gravity="center_horizontal"
+    tools:context="com.software.studio.delicacies.fragments.Favorite"
+    android:weightSum="1">
 
-    <TextView
-        android:id="@+id/tv_favorite"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="40dp"
         android:gravity="center"
-        android:textSize="20sp"
-        android:text="這是最愛" />
+        android:layout_marginTop="5dp">
+
+        <EditText
+            android:layout_width="305dp"
+            android:layout_height="40dp"
+            android:id="@+id/favorite_edittext"
+            android:background="@drawable/edittext_style"
+            android:imeOptions="actionDone"
+            android:singleLine="true" />
+        <ImageButton
+            android:background="@drawable/ic_menu_favorite_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_button_favorite" />
+    </LinearLayout>
 
 </LinearLayout>
