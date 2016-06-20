@@ -4,14 +4,13 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context="com.software.studio.delicacies.fragments.Wheel">
+    tools:context="com.software.studio.delicacies.fragments.Wheel"
+    android:weightSum="1">
 
-    <TextView
-        android:id="@+id/tv_wheel"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="這是轉盤" />
-
+    <ImageView
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_wheels"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.37" />
 </LinearLayout>
