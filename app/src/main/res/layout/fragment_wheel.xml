@@ -4,23 +4,27 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context="com.software.studio.delicacies.fragments.Wheel"
-    android:weightSum="1">
+    tools:context="com.software.studio.delicacies.fragments.Wheel">
 
-    <ImageView
-        android:layout_width="189dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/img_wheels"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.37" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <ImageButton
+        android:id="@+id/button_hsao_ze"
+        android:background="@drawable/button_hsao_ze"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:id="@+id/spin_button"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:id="@+id/button_water_wood"
+        android:background="@drawable/button_water_wood"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:id="@+id/button_wind_cloud"
+        android:background="@drawable/button_wind_cloud"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
 </LinearLayout>

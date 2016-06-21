@@ -28,7 +28,7 @@ public class Search extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ArrayList<String> data = new ArrayList<String>();
 
-        View view =inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.search_recycler_view);
 
         mLayoutManager = new LinearLayoutManager(container.getContext());
