@@ -23,8 +23,8 @@
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:layout_width="290dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="30dp"
         android:textStyle="bold"
         android:textColor="@android:color/holo_red_dark"

@@ -6,12 +6,9 @@
     android:orientation="vertical"
     tools:context="com.software.studio.delicacies.fragments.Settings">
 
-    <TextView
-        android:id="@+id/tv_settings"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/setting_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="這是設定" />
-
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 </LinearLayout>
