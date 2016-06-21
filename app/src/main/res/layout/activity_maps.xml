@@ -5,4 +5,27 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.software.studio.delicacies.MapsActivity" />
+    tools:context="com.software.studio.delicacies.MapsActivity">
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:text="Current place"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="10dp"
+        android:id="@+id/map_current"/>
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:text="Target place"
+        android:padding="10dp"
+        android:layout_marginTop="80dp"
+        android:paddingRight="10dp"
+        android:id="@+id/map_position"/>
+
+
+
+
+    </fragment>
