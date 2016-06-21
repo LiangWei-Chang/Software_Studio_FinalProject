@@ -53,7 +53,7 @@ public class wheel_wind_cloud extends AppCompatActivity {
 
                     }
                 });
-                animation.setDuration((long)1500);
+                animation.setDuration((long)3000);
                 animation.setFillAfter(true);
                 wheel.startAnimation(animation);
             }

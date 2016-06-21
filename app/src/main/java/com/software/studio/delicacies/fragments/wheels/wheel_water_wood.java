@@ -32,7 +32,7 @@ public class wheel_water_wood extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 float turn = (float)(Math.random() * 360f);
-                final int which = (int)(turn / 45f);
+                final int which = (int)(turn / 40f);
                 final View views = v;
                 rand = turn + 360f * 3;
                 Log.d("rotate",new Float(rand).toString());
@@ -53,7 +53,7 @@ public class wheel_water_wood extends AppCompatActivity {
 
                     }
                 });
-                animation.setDuration((long)1500);
+                animation.setDuration((long)3000);
                 animation.setFillAfter(true);
                 wheel.startAnimation(animation);
             }
