@@ -31,12 +31,32 @@ public class Wheel extends Fragment {
         start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rand = (float)(Math.random()*360f)+360f*3;
+                float turn = (float)(Math.random()*360f);
+               final int which = (int)(turn/30f);
+                final View views =v;
+                rand = turn+360f*3;
                 Log.d("rotate",new Float(rand).toString());
                 animation = new RotateAnimation(0f,rand, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        Toast.makeText(views.getContext(),new Integer(which).toString(),Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
                 animation.setDuration((long)1500);
                 animation.setFillAfter(true);
-                    wheel.startAnimation(animation);
+                wheel.startAnimation(animation);
+
             }
         });
 
