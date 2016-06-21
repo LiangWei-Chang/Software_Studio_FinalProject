@@ -14,13 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/pin"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/img_wheel_wind_cloud"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="13"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -30,5 +32,6 @@
         android:textColor="@android:color/holo_red_dark"
         android:text="What To Eat !!!"
         android:id="@+id/spin_button_wind_cloud"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2"/>
 </LinearLayout>

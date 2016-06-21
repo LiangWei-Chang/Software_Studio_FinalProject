@@ -37,22 +37,6 @@ public class wheel_water_wood extends AppCompatActivity {
                 rand = turn + 360f * 3;
                 Log.d("rotate",new Float(rand).toString());
                 animation = new RotateAnimation(0f, rand, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                animation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        Toast.makeText(views.getContext(),new Integer(which).toString(),Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
                 animation.setDuration((long)3000);
                 animation.setFillAfter(true);
                 wheel.startAnimation(animation);
