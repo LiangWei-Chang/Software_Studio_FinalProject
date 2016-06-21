@@ -13,25 +13,17 @@ import com.software.studio.delicacies.DetailActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
 
+import java.util.ArrayList;
+
 public class Shouye extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView.LayoutManager mLayoutManager;
         RecycleViewAdapter mAdapter;
+        ArrayList<String> data = new ArrayList<String>();
+        data.add("Delicacy1");
 
-        String[] data = {
-                "Delicacy1",
-                "Delicacy2",
-                "Delicacy3",
-                "Delicacy4",
-                "Delicacy5",
-                "Delicacy6",
-                "Delicacy7",
-                "Delicacy8",
-                "Delicacy9",
-                "Delicacy10",
-        };
 
         View rootView = inflater.inflate(R.layout.fragment_shouye, container, false);
 

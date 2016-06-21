@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> implements View.OnClickListener{
-    private String[] mDataset;
+    private ArrayList<String> mDataset;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
     @Override
@@ -31,7 +33,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         }
     }
 
-    public RecycleViewAdapter(String[] myDataset) {
+    public RecycleViewAdapter(ArrayList<String> myDataset) {
         mDataset = myDataset;
     }
 
@@ -48,16 +50,23 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     // Replace the contents of a view
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset[position]);
-        holder.itemView.setTag(mDataset[position]);
+        holder.mTextView.setText(mDataset.get(position));
+        holder.itemView.setTag(mDataset.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 
     public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
         this.mOnItemClickListener = listener;
+    }
+
+    public void addItem(String text)
+    {
+        mDataset.add(text);
+        this.notifyDataSetChanged();
+
     }
 }
