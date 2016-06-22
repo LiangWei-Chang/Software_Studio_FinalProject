@@ -12,20 +12,30 @@ import android.view.ViewGroup;
 import com.software.studio.delicacies.DetailActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
+import com.software.studio.delicacies.data.DelicaciesItem;
+import com.software.studio.delicacies.data.ItemDAO;
 
 import java.util.ArrayList;
 
 public class Favorite extends Fragment{
     RecyclerView.LayoutManager mLayoutManager;
     RecycleViewAdapter mAdapter;
+    ArrayList<String> data = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container ,Bundle savedInstanceState) {
-        ArrayList<String> data = new ArrayList<>();
         View rootview = inflater.inflate(R.layout.fragment_favorite, container, false);
         RecyclerView recyclerView = (RecyclerView) rootview.findViewById(R.id.favorite_recycler_view);
 
         mLayoutManager = new LinearLayoutManager(container.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
+
+        ItemDAO myFavoriteDelicacies = new ItemDAO(getActivity().getApplicationContext());
+        ArrayList<DelicaciesItem> myFavoriteList = myFavoriteDelicacies.getFavorite();
+
+        for(DelicaciesItem item : myFavoriteList){
+            data.add(item.getName() + " Rating : " + item.getRating());
+        }
 
         mAdapter = new RecycleViewAdapter(data);
         recyclerView.setAdapter(mAdapter);

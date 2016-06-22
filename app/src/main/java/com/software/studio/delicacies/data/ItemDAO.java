@@ -99,6 +99,19 @@ public class ItemDAO {
         return result;
     }
 
+    // 讀取最愛
+    public ArrayList<DelicaciesItem> getFavorite() {
+        ArrayList<DelicaciesItem> result = new ArrayList<>();
+        Cursor cursor = database.query(TABLE_NAME, null, "favorite=?", new String[]{"1"}, null, null, null);
+
+        while(cursor.moveToNext()){
+            result.add(getDelicaciesItem(cursor));
+        }
+
+        cursor.close();
+        return result;
+    }
+
     public DelicaciesItem getDelicaciesItem(Cursor cursor) {
         DelicaciesItem result = new DelicaciesItem();
 
