@@ -10,8 +10,7 @@
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#abcdef" />
+        android:layout_weight="1" />
 
     <include layout="@layout/menubutton" />
 </LinearLayout>
