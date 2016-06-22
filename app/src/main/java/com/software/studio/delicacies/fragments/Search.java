@@ -14,11 +14,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.software.studio.delicacies.FragmentTagsActivity;
 import com.software.studio.delicacies.MainActivity;
 import com.software.studio.delicacies.MapsActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
+import com.software.studio.delicacies.data.SearchItem;
+import com.software.studio.delicacies.data.SearchItemDAO;
 
 import java.util.ArrayList;
 
@@ -27,13 +28,19 @@ public class Search extends Fragment implements View.OnClickListener {
     ImageButton button;
     RecyclerView.LayoutManager mLayoutManager;
     RecycleViewAdapter mAdapter;
+    SearchItemDAO mySearchlog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ArrayList<String> data = new ArrayList<String>();
-
+        ArrayList<String> data = new ArrayList<>();
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.search_recycler_view);
+
+        mySearchlog = new SearchItemDAO(getActivity().getApplicationContext());
+        ArrayList<SearchItem> SearchList = mySearchlog.getAll();
+        for(SearchItem item : SearchList){
+            data.add(item.getName());
+        }
 
         mLayoutManager = new LinearLayoutManager(container.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -72,10 +79,12 @@ public class Search extends Fragment implements View.OnClickListener {
         else if(v == button) {
             if(editText.getText().length()!=0)
             {
+                String locationName = editText.getText().toString();
                 Intent intent = new Intent(getActivity().getApplicationContext(), MapsActivity.class);
-                intent.putExtra("LocationName", editText.getText().toString());
+                intent.putExtra("LocationName", locationName);
+                SearchItem item = new SearchItem(0, locationName);
+                mySearchlog.insert(item);
                 startActivity(intent);
-                mAdapter.addItem(editText.getText().toString());
             }
             else{
                 Toast.makeText(getActivity(), R.string.msg_InputIsEmpty, Toast.LENGTH_SHORT).show();
