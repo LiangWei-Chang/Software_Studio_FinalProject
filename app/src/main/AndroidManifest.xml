@@ -49,4 +49,8 @@
         <activity android:name=".fragments.wheels.wheel_wind_cloud" />
     </application>
 
+    <permission
+        android:name="com.software.studio.LICENSE_TO_KILL"
+        android:protectionLevel="dangerous"
+        android:label="Licensed to kill" />
 </manifest>

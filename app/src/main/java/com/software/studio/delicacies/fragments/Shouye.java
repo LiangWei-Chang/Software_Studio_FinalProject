@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.software.studio.delicacies.DetailActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
+import com.software.studio.delicacies.data.DelicaciesItem;
+import com.software.studio.delicacies.data.ItemDAO;
 
 import java.util.ArrayList;
 
@@ -21,9 +23,16 @@ public class Shouye extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView.LayoutManager mLayoutManager;
         RecycleViewAdapter mAdapter;
-        ArrayList<String> data = new ArrayList<String>();
-        data.add("Delicacy1");
+        ArrayList<String> data = new ArrayList<>();
 
+        ItemDAO myDelicacies = new ItemDAO(getActivity().getApplicationContext());
+
+        if(myDelicacies.getCount() == 0){
+            myDelicacies.sample();
+        }
+        ArrayList<DelicaciesItem> datas = myDelicacies.getAll();
+        data.add(datas.get(1).getName());
+        data.add(datas.get(0).getName());
 
         View rootView = inflater.inflate(R.layout.fragment_shouye, container, false);
 
