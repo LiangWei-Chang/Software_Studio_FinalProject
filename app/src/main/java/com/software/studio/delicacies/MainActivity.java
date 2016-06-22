@@ -3,21 +3,53 @@ package com.software.studio.delicacies;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    private Button login_button;
+    private EditText passwordtext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(MainActivity.this, FragmentTagsActivity.class));
+        login_button = (Button) findViewById(R.id.login_button);
+        passwordtext = (EditText) findViewById(R.id.password_text);
+        login_button.setOnClickListener(this);
     }
 
     @Override
-    protected void onRestart()
-    {
-        super.onRestart();
+    protected void onPause(){
+        super.onPause();
         this.finish();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(FragmentTagsActivity.getPref() == null || !FragmentTagsActivity.getPref().getBoolean("needPassword", false)) {
+            startActivity(new Intent(MainActivity.this, FragmentTagsActivity.class));
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == login_button){
+            String settedpassword = FragmentTagsActivity.getPref().getString("password", null).toString();
+            Log.d("pass", settedpassword);
+            if(settedpassword != null && settedpassword.equals(passwordtext.getText().toString())){
+                startActivity(new Intent(MainActivity.this, FragmentTagsActivity.class));
+            }
+            else {
+                passwordtext.setText("");
+                Toast.makeText(getApplicationContext(), R.string.msg_WrongPassword, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
 }

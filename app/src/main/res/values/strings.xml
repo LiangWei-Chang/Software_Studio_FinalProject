@@ -8,4 +8,6 @@
     <string name="msg_NotificationOn">Notifications On</string>
     <string name="msg_NotificationOff">Notifications Off</string>
     <string name="msg_ChangeColor">Please restart the APP</string>
+    <string name="msg_WrongPassword">Your password is wrong</string>
+    <string name="msg_EmptyPassword">Your password cannot be empty</string>
 </resources>

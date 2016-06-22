@@ -7,12 +7,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.software.studio.delicacies.R;
@@ -149,12 +152,43 @@ public class Settings extends Fragment {
                 break;
             case 2:
                 if(item.getTitle().equals("On")){
-                    Toast.makeText(getContext(), "Password On", Toast.LENGTH_SHORT).show();
-                    settings.edit().putString("password", "on").apply();
+                    AlertDialog.Builder editDialog = new AlertDialog.Builder(getActivity());
+                    editDialog.setTitle("--- Password ---");
+
+                    final EditText editText = new EditText(getActivity());
+
+                    // Input number
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+                    // Length at most 10
+                    editText.setEms(10);
+
+                    // Hide password
+                    editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                    editDialog.setView(editText);
+
+                    editDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            if(editText.getText().length()==0){
+                                Toast.makeText(getContext(), R.string.msg_EmptyPassword, Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                settings.edit().putBoolean("needPassword", true).apply();
+                                settings.edit().putString("password", editText.getText().toString()).apply();
+                            }
+                        }
+                    });
+                    editDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            settings.edit().putBoolean("needPassword", false).apply();
+                        }
+                    });
+                    editDialog.show();
                 }
                 else if(item.getTitle().equals("Off")){
                     Toast.makeText(getContext(), "Password Off", Toast.LENGTH_SHORT).show();
-                    settings.edit().putString("password", "off").apply();
+                    settings.edit().putBoolean("needPassword", false).apply();
                 }
                 break;
         }
