@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 
 public class DetailActivity extends AppCompatActivity {
-    TextView title,tel,location;
+    TextView title,tel,location,comment,opentime;
     int name;
     ArrayList<DelicaciesItem> list;
     @Override
@@ -32,10 +32,14 @@ public class DetailActivity extends AppCompatActivity {
         title = (TextView)this.findViewById(R.id.detail_name);
         tel = (TextView)this.findViewById(R.id.detail_tel);
         location = (TextView)this.findViewById(R.id.detail_location);
+        comment = (TextView)this.findViewById(R.id.detail_comment);
+        opentime = (TextView)this.findViewById(R.id.detail_opentime);
 
         title.setText(list.get(name).getName());
-        location.setText("地址:\n"+list.get(name).getLocation());
-        tel.setText("電話:"+list.get(name).getTelnumber());
+        location.setText("地址:"+list.get(name).getLocation());
+        tel.setText("電話:   "+list.get(name).getTelnumber());
+        comment.setText("相關評論:\n"+list.get(name).getComment());
+        opentime.setText("營業時間: "+list.get(name).getOpentime());
 
         /*
         tel.setOnClickListener(new View.OnClickListener() {

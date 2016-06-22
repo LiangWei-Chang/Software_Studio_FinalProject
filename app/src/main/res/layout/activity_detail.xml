@@ -8,13 +8,17 @@
 
 
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
         android:gravity="center_horizontal">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="383dp"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="80dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,14 +29,7 @@
             android:layout_gravity="center_horizontal|top"
             android:textSize="30dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/detail_location"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,8 +37,40 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/detail_tel"
-            android:clickable="true" />
+            android:clickable="true"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Large Text"
+            android:id="@+id/detail_location"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/detail_comment"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp" />
+
+
+
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/detail_opentime"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff0000" />
 
+    </LinearLayout>
 </FrameLayout>
