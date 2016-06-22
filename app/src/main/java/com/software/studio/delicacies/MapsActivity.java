@@ -97,17 +97,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         Intent intent = this.getIntent();
         mMap = googleMap;
+        Location location=null;
+        final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0;
+
+        // The minimum time beetwen updates in milliseconds
+        final long MIN_TIME_BW_UPDATES = 0;
+        boolean isGPSEnabled = false;
+        boolean isNetworkEnabled = false;
         String locationName = intent.getStringExtra("LocationName");
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+            Log.d("error","location manager error");
             return;
         }
-        Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        current = new LatLng(location.getLatitude(), location.getLongitude());
-       // Log.d("position",(new Double(location.getLatitude()).toString())+"--"+(new Double(location.getLongitude()).toString()));
-        mMap.addMarker(new MarkerOptions().position(current).title("Here").snippet("Current place"));
+        isGPSEnabled = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetworkEnabled = manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        if (!isGPSEnabled && !isNetworkEnabled) {
+            Toast.makeText(getApplicationContext(),"GPS or Network disable",Toast.LENGTH_SHORT).show();
+        } else {
+            // if GPS Enabled get lat/long using GPS Services
+            if (isGPSEnabled) {
+                Log.d("GPS Enabled", "GPS Enabled");
+                if (manager != null) {
+                    location = manager
+                            .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    //updateGPSCoordinates();
+                }
+            }
+            // First get location from Network Provider
+            if (isNetworkEnabled) {
+                    Log.d("Network", "Network");
 
+                    if (manager != null) {
+                        location = manager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        //updateGPSCoordinates();
+                    }
+                }
+
+
+        }
+        if(location!=null) {
+            current = new LatLng(location.getLatitude(), location.getLongitude());
+            // Log.d("position",(new Double(location.getLatitude()).toString())+"--"+(new Double(location.getLongitude()).toString()));
+            mMap.addMarker(new MarkerOptions().position(current).title("Here").snippet("Current place"));
+        }
         LocationNameToMarker(locationName);
 
     }
