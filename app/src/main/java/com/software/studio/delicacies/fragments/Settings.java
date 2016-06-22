@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
 import com.software.studio.delicacies.data.ItemDAO;
+import com.software.studio.delicacies.data.SearchItemDAO;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,8 @@ public class Settings extends Fragment {
                         public void onClick(DialogInterface dialog, int id) {
                             ItemDAO data = new ItemDAO(getActivity().getApplicationContext());
                             data.clearDatabase();
+                            SearchItemDAO search = new SearchItemDAO(getActivity().getApplicationContext());
+                            search.clearDatabase();
                             dialog.dismiss();
                         }
                     });

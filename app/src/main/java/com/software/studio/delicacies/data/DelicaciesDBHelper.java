@@ -9,7 +9,7 @@ public class DelicaciesDBHelper extends SQLiteOpenHelper{
     // Database name
     static final String DATABASE_NAME = "delicacies.db";
     // Database version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Object
     private static SQLiteDatabase database;
 
@@ -28,12 +28,14 @@ public class DelicaciesDBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         // 建立App所需要的表格
         db.execSQL(ItemDAO.CREATE_TABLE);
+        db.execSQL(SearchItemDAO.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // 刪除原本表格
         db.execSQL("DROP TABLE IF EXISTS " + ItemDAO.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SearchItemDAO.TABLE_NAME);
         // 建立新表格
         onCreate(db);
     }

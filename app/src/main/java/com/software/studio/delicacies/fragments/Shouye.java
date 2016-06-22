@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.software.studio.delicacies.DetailActivity;
 import com.software.studio.delicacies.R;
@@ -23,7 +24,7 @@ public class Shouye extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView.LayoutManager mLayoutManager;
-        RecycleViewAdapter mAdapter;
+        final RecycleViewAdapter mAdapter;
         ArrayList<String> data = new ArrayList<>();
 
         ItemDAO myDelicacies = new ItemDAO(getActivity().getApplicationContext());
@@ -51,7 +52,15 @@ public class Shouye extends Fragment {
             @Override
             public void onItemClick(View view, String data) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
-                intent.putExtra("name", data);
+                int position=0;
+                for(int i=0;i<mAdapter.getDataset().size();i++)
+                {
+                    if(data.equals(mAdapter.getDataset().get(i))) {
+                        position = i;
+                        break;
+                    }
+                }
+                intent.putExtra("name", position);
                 startActivity(intent);
             }
         });

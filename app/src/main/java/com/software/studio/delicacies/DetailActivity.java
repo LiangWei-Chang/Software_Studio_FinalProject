@@ -11,16 +11,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 
+import com.software.studio.delicacies.data.DelicaciesItem;
+import com.software.studio.delicacies.data.ItemDAO;
+
+import java.util.ArrayList;
+
 
 public class DetailActivity extends AppCompatActivity {
-    TextView tel;
+    TextView title,tel,location;
+    int name;
+    ArrayList<DelicaciesItem> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        String name = getIntent().getStringExtra("name");
-        tel = (TextView)this.findViewById(R.id.tel);
-        tel.setText("0975310732");
+        name = getIntent().getIntExtra("name",0);
+
+        ItemDAO itemDAO = new ItemDAO(this);
+        list = itemDAO.getAll();
+        title = (TextView)this.findViewById(R.id.detail_name);
+        tel = (TextView)this.findViewById(R.id.detail_tel);
+        location = (TextView)this.findViewById(R.id.detail_location);
+
+        title.setText(list.get(name).getName());
+        location.setText("地址:\n"+list.get(name).getLocation());
+        tel.setText("電話:"+list.get(name).getTelnumber());
+
+        /*
         tel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +48,7 @@ public class DetailActivity extends AppCompatActivity {
 
             }
 
-        });
-        Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+        });*/
+
     }
 }

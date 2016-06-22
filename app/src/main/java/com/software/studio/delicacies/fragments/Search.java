@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,24 +30,25 @@ public class Search extends Fragment implements View.OnClickListener {
     RecyclerView.LayoutManager mLayoutManager;
     RecycleViewAdapter mAdapter;
     SearchItemDAO mySearchlog;
+    ArrayList<String> data = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ArrayList<String> data = new ArrayList<>();
+
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.search_recycler_view);
-
-        mySearchlog = new SearchItemDAO(getActivity().getApplicationContext());
-        ArrayList<SearchItem> SearchList = mySearchlog.getAll();
-        for(SearchItem item : SearchList){
-            data.add(item.getName());
-        }
 
         mLayoutManager = new LinearLayoutManager(container.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new RecycleViewAdapter(data);
         recyclerView.setAdapter(mAdapter);
+        mySearchlog = new SearchItemDAO(getActivity().getApplicationContext());
+
+
+
+
+
 
         mAdapter.setOnItemClickListener(new RecycleViewAdapter.OnRecyclerViewItemClickListener() {
             @Override
@@ -71,6 +73,17 @@ public class Search extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
+    public void onResume()
+    {
+        Log.d("Call","On resume called");
+        data.clear();
+        ArrayList<SearchItem> SearchList = mySearchlog.getAll();
+        for(SearchItem item : SearchList){
+            data.add(item.getName());
+        }
+        super.onResume();
+    }
 
     public void onClick(View v) {
         if(v == editText) {
