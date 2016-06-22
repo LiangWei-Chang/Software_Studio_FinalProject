@@ -8,12 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.software.studio.delicacies.DetailActivity;
-import com.software.studio.delicacies.MapsActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
 
@@ -24,7 +20,7 @@ public class Favorite extends Fragment{
     RecycleViewAdapter mAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container ,Bundle savedInstanceState) {
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
         View rootview = inflater.inflate(R.layout.fragment_favorite, container, false);
         RecyclerView recyclerView = (RecyclerView) rootview.findViewById(R.id.favorite_recycler_view);
 

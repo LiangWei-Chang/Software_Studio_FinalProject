@@ -36,13 +36,12 @@ public class Settings extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_settings, container, false);
         FragView = inflater.inflate(R.layout.activity_framement_tags, container, false);
         RecyclerView.LayoutManager mLayoutManager;
-        ArrayList<String> data = new ArrayList<String>();
-        data.add("Notifications");
+        ArrayList<String> data = new ArrayList<>();
         data.add("Change Background Color");
         data.add("Password");
         data.add("Reset");
         data.add("About");
-        SharedPreferences set;
+
         recyclerView = (RecyclerView) rootview.findViewById(R.id.setting_recycler_view);
         mLayoutManager = new LinearLayoutManager(container.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -53,10 +52,10 @@ public class Settings extends Fragment {
             @Override
             public void onItemClick(View view, String data) {
                 menuView = view;
-                if(data == mAdapter.getDataset().get(0) || data == mAdapter.getDataset().get(1) || data == mAdapter.getDataset().get(2)) {
+                if(data == mAdapter.getDataset().get(0) || data == mAdapter.getDataset().get(1)) {
                     recyclerView.showContextMenuForChild(view);
                 }
-                else if(data == mAdapter.getDataset().get(3)){
+                else if(data == mAdapter.getDataset().get(2)){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("Are you sure to reset the datas ?");
                     builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -75,7 +74,7 @@ public class Settings extends Fragment {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
-                else if(data == mAdapter.getDataset().get(4)){
+                else if(data == mAdapter.getDataset().get(3)){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("Class: Software Studio\nAuthor: Liang-Wei, Yu-Jen");
                     builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
@@ -97,23 +96,18 @@ public class Settings extends Fragment {
         // TODO Auto-generated method stub
         super.onCreateContextMenu(menu, v, menuInfo);
         if(menuView.getTag() == mAdapter.getDataset().get(0)) {
-            menu.setHeaderTitle("Notifications");
-            menu.add(0, v.getId(), 0, "On");
-            menu.add(0, v.getId(), 0, "Off");
-        }
-        else if(menuView.getTag() == mAdapter.getDataset().get(1)) {
-            menu.setHeaderTitle("Change Background Color");
-            menu.add(1, v.getId(), 0, "Red");
-            menu.add(1, v.getId(), 0, "Blue");
-            menu.add(1, v.getId(), 0, "Green");
-            menu.add(1, v.getId(), 0, "Orange");
-            menu.add(1, v.getId(), 0, "Purple");
-        }
-        else if(menuView.getTag() == mAdapter.getDataset().get(2)) {
-            menu.setHeaderTitle("Password");
-            menu.add(2, v.getId(), 0, "On");
-            menu.add(2, v.getId(), 0, "Off");
-        }
+             menu.setHeaderTitle("Change Background Color");
+             menu.add(0, v.getId(), 0, "Red");
+             menu.add(0, v.getId(), 0, "Blue");
+             menu.add(0, v.getId(), 0, "Green");
+             menu.add(0, v.getId(), 0, "Orange");
+             menu.add(0, v.getId(), 0, "Purple");
+         }
+         else if(menuView.getTag() == mAdapter.getDataset().get(1)) {
+             menu.setHeaderTitle("Password");
+             menu.add(1, v.getId(), 0, "On");
+             menu.add(1, v.getId(), 0, "Off");
+         }
     }
 
     @Override
@@ -121,16 +115,6 @@ public class Settings extends Fragment {
         settings = getActivity().getSharedPreferences("Preference", 0);
         switch (item.getGroupId()){
             case 0:
-                if(item.getTitle().equals("On")){
-                    Toast.makeText(getContext(), R.string.msg_NotificationOn, Toast.LENGTH_SHORT).show();
-                    settings.edit().putString("notifications", "on").apply();
-                }
-                else if(item.getTitle().equals("Off")){
-                    Toast.makeText(getContext(), R.string.msg_NotificationOff, Toast.LENGTH_SHORT).show();
-                    settings.edit().putString("notifications", "off").apply();
-                }
-                break;
-            case 1:
                 if(item.getTitle().equals("Red")){
                     Toast.makeText(getContext(), R.string.msg_ChangeColor, Toast.LENGTH_SHORT).show();
                     settings.edit().putString("bgcolor", "red").apply();
@@ -152,7 +136,7 @@ public class Settings extends Fragment {
                     settings.edit().putString("bgcolor", "purple").apply();
                 }
                 break;
-            case 2:
+            case 1:
                 if(item.getTitle().equals("On")){
                     AlertDialog.Builder editDialog = new AlertDialog.Builder(getActivity());
                     editDialog.setTitle("--- Password ---");

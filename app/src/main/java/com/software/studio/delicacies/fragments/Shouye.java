@@ -30,11 +30,12 @@ public class Shouye extends Fragment {
         Log.d("count", new Integer(myDelicacies.getCount()).toString());
         if(myDelicacies.getCount() == 0){
             Log.d("sample","sample insert");
-            myDelicacies.sample();
+            myDelicacies.ConstructDelicacies();
         }
-        ArrayList<DelicaciesItem> datas = myDelicacies.getAll();
-        data.add(datas.get(1).getName());
-        data.add(datas.get(0).getName());
+        ArrayList<DelicaciesItem> DelicaciesList = myDelicacies.getAll();
+        for(DelicaciesItem item : DelicaciesList){
+            data.add(item.getName() + " Rating : " + item.getRating());
+        }
 
         View rootView = inflater.inflate(R.layout.fragment_shouye, container, false);
 

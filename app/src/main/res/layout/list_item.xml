@@ -7,4 +7,6 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical|center_horizontal"
     android:layout_marginBottom="1dp"
+    android:textColor="@android:color/white"
+    android:textSize="20dp"
     android:id="@+id/list_item_textview"/>
