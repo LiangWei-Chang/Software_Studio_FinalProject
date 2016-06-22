@@ -31,6 +31,73 @@
             android:src="@drawable/favorite_off" />
     </LinearLayout>
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+        <ImageView
+            android:id="@+id/rating1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/rating10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_off"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="383dp"
@@ -43,7 +110,7 @@
             android:text="Large Text"
             android:id="@+id/detail_tel"
             android:clickable="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"

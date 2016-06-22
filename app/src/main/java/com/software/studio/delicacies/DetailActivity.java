@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.software.studio.delicacies.data.DelicaciesItem;
@@ -20,6 +21,7 @@ public class DetailActivity extends AppCompatActivity {
     int name;
     ArrayList<DelicaciesItem> list;
     DelicaciesItem item;
+    ArrayList<Integer> Ratings = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +39,26 @@ public class DetailActivity extends AppCompatActivity {
         opentime = (TextView)this.findViewById(R.id.detail_opentime);
         button_favorite = (ImageButton) findViewById(R.id.button_favorite);
 
+        Ratings.add(R.id.rating1);
+        Ratings.add(R.id.rating2);
+        Ratings.add(R.id.rating3);
+        Ratings.add(R.id.rating4);
+        Ratings.add(R.id.rating5);
+        Ratings.add(R.id.rating6);
+        Ratings.add(R.id.rating7);
+        Ratings.add(R.id.rating8);
+        Ratings.add(R.id.rating9);
+        Ratings.add(R.id.rating10);
+
         item = list.get(name);
         if(item.getFavorite() == 1) {
             button_favorite.setImageResource(R.drawable.favorite_on);
+        }
+
+        ImageView star;
+        for(int i=0; i<item.getRating(); i++){
+            star = (ImageView) findViewById(Ratings.get(i));
+            star.setImageResource(R.drawable.rating_on);
         }
 
         title.setText(item.getName());
