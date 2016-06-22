@@ -1,11 +1,11 @@
 package com.software.studio.delicacies;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -26,14 +26,41 @@ public class FragmentTagsActivity extends FragmentActivity implements View.OnCli
     private List<Fragment> fragments;
     private FragmentManager frmanager;
     private int selected_fragment = 0;
+    private static SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_framement_tags);
+        View view = getLayoutInflater().inflate(R.layout.activity_framement_tags, null);
+        view = CheckBackGroundColor(view);
+        setContentView(view);
         fragments = new ArrayList<Fragment>();
         InitView();
     }
+
+    private View CheckBackGroundColor(View view) {
+        settings = getSharedPreferences("Preference", 0);
+        if(settings.getString("bgcolor", null) == null){
+            view.setBackgroundColor(getResources().getColor(R.color.light_blue));
+        }
+        else if(settings.getString("bgcolor", null).equals("red")){
+            view.setBackgroundColor(getResources().getColor(R.color.bgred));
+        }
+        else if(settings.getString("bgcolor", null).equals("blue")){
+            view.setBackgroundColor(getResources().getColor(R.color.bgblue));
+        }
+        else if(settings.getString("bgcolor", null).equals("green")){
+            view.setBackgroundColor(getResources().getColor(R.color.bggreen));
+        }
+        else if(settings.getString("bgcolor", null).equals("orange")){
+            view.setBackgroundColor(getResources().getColor(R.color.bgorange));
+        }
+        else if(settings.getString("bgcolor", null).equals("purple")){
+            view.setBackgroundColor(getResources().getColor(R.color.bgpurple));
+        }
+        return view;
+    }
+
 
     private void InitView() {
         // 初始化 Tabs
@@ -118,7 +145,6 @@ public class FragmentTagsActivity extends FragmentActivity implements View.OnCli
         FragmentTransaction beginTransaction = frmanager.beginTransaction();
         beginTransaction.remove(fragments.get(selected_fragment));
         beginTransaction.add(R.id.fragment, fragments.get(i));
-
         selected_fragment = i;
         switch (i) {
             case 0:
@@ -148,5 +174,9 @@ public class FragmentTagsActivity extends FragmentActivity implements View.OnCli
         img_search.setImageResource(R.drawable.ic_menu_search_off);
         img_wheel.setImageResource(R.drawable.ic_menu_wheel_off);
         img_settings.setImageResource(R.drawable.ic_menu_user_off);
+    }
+
+    public static SharedPreferences getPref(){
+        return settings;
     }
 }

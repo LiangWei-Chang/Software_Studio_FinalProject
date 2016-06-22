@@ -1,6 +1,7 @@
 package com.software.studio.delicacies.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.software.studio.delicacies.FragmentTagsActivity;
 import com.software.studio.delicacies.MapsActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
@@ -46,6 +49,11 @@ public class Search extends Fragment implements View.OnClickListener {
             }
         });
 
+        // Set text color
+        if(FragmentTagsActivity.getPref().getString("bgcolor", null) != null){
+            TextView tv = (TextView) view.findViewById(R.id.search_history);
+            tv.setTextColor(Color.WHITE);
+        }
 
         editText = (EditText) view.findViewById(R.id.search_edittext);
         button = (ImageButton) view.findViewById(R.id.image_button_search);

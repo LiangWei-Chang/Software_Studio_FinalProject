@@ -1,6 +1,7 @@
 package com.software.studio.delicacies.fragments;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +25,8 @@ public class Settings extends Fragment {
     RecycleViewAdapter mAdapter;
     View menuView;
     View FragView;
+    SharedPreferences settings;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -35,6 +38,7 @@ public class Settings extends Fragment {
         data.add("Password");
         data.add("Reset");
         data.add("About");
+        SharedPreferences set;
         recyclerView = (RecyclerView) rootview.findViewById(R.id.setting_recycler_view);
         mLayoutManager = new LinearLayoutManager(container.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -109,38 +113,48 @@ public class Settings extends Fragment {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        settings = getActivity().getSharedPreferences("Preference", 0);
         switch (item.getGroupId()){
             case 0:
                 if(item.getTitle().equals("On")){
                     Toast.makeText(getContext(), R.string.msg_NotificationOn, Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("notifications", "on").apply();
                 }
                 else if(item.getTitle().equals("Off")){
                     Toast.makeText(getContext(), R.string.msg_NotificationOff, Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("notifications", "off").apply();
                 }
                 break;
             case 1:
                 if(item.getTitle().equals("Red")){
                     Toast.makeText(getContext(), R.string.msg_ChangeColor, Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("bgcolor", "red").apply();
                 }
                 else if(item.getTitle().equals("Blue")){
                     Toast.makeText(getContext(), R.string.msg_ChangeColor, Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("bgcolor", "blue").apply();
                 }
                 else if(item.getTitle().equals("Green")){
                     Toast.makeText(getContext(), R.string.msg_ChangeColor, Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("bgcolor", "green").apply();
                 }
                 else if(item.getTitle().equals("Orange")){
                     Toast.makeText(getContext(), R.string.msg_ChangeColor, Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("bgcolor", "orange").apply();
                 }
                 else if(item.getTitle().equals("Purple")){
                     Toast.makeText(getContext(), R.string.msg_ChangeColor, Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("bgcolor", "purple").apply();
                 }
                 break;
             case 2:
                 if(item.getTitle().equals("On")){
                     Toast.makeText(getContext(), "Password On", Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("password", "on").apply();
                 }
                 else if(item.getTitle().equals("Off")){
                     Toast.makeText(getContext(), "Password Off", Toast.LENGTH_SHORT).show();
+                    settings.edit().putString("password", "off").apply();
                 }
                 break;
         }

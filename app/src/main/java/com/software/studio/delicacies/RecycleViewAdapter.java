@@ -1,5 +1,7 @@
 package com.software.studio.delicacies;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> implements View.OnClickListener{
     private ArrayList<String> mDataset;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+    private SharedPreferences settings;
 
     @Override
     public void onClick(View v) {
@@ -42,6 +45,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public RecycleViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
 
+        // Read Text Color
+        settings = FragmentTagsActivity.getPref();
+        if(settings.getString("bgcolor", null) != null){
+            v.setTextColor(Color.WHITE);
+        }
         ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(this);
         return vh;

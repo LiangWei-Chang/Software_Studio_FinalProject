@@ -7,5 +7,5 @@
     <string name="msg_LocationNameNotFound">Location name not found</string>
     <string name="msg_NotificationOn">Notifications On</string>
     <string name="msg_NotificationOff">Notifications Off</string>
-    <string name="msg_ChangeColor">Changing background color</string>
+    <string name="msg_ChangeColor">Please restart the APP</string>
 </resources>
