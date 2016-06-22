@@ -1,5 +1,7 @@
 package com.software.studio.delicacies;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -60,18 +62,19 @@ public class DetailActivity extends AppCompatActivity {
                 itemDAO.update(item);
             }
         });
-        /*
+
         tel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String phonenumber = tel.getText().toString().trim();
+                phonenumber.replaceAll("-()","");
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+tel.getText().toString()));
+                intent.setData(Uri.parse("tel:"+phonenumber));
                 startActivity(intent);
 
             }
 
-        });*/
+        });
 
     }
 }
