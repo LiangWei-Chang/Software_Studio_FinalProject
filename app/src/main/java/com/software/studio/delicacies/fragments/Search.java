@@ -45,11 +45,6 @@ public class Search extends Fragment implements View.OnClickListener {
         recyclerView.setAdapter(mAdapter);
         mySearchlog = new SearchItemDAO(getActivity().getApplicationContext());
 
-
-
-
-
-
         mAdapter.setOnItemClickListener(new RecycleViewAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, String data) {
