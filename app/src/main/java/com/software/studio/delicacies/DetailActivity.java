@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -68,6 +69,7 @@ public class DetailActivity extends AppCompatActivity {
         location.setText("地址 : " + item.getLocation());
         tel.setText("電話 : " + item.getTelnumber());
         comment.setText("相關評論 : \n" + item.getComment());
+        comment.setMovementMethod(new ScrollingMovementMethod());
         opentime.setText("營業時間 : " + item.getOpentime());
 
         button_favorite.setOnClickListener(new View.OnClickListener() {
