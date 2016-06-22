@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
+import com.software.studio.delicacies.data.ItemDAO;
 
 import java.util.ArrayList;
 
@@ -60,7 +61,8 @@ public class Settings extends Fragment {
                     builder.setTitle("Are you sure to reset the datas ?");
                     builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            //TODO
+                            ItemDAO data = new ItemDAO(getActivity().getApplicationContext());
+                            data.clearDatabase();
                             dialog.dismiss();
                         }
                     });

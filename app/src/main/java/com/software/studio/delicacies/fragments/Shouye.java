@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +27,9 @@ public class Shouye extends Fragment {
         ArrayList<String> data = new ArrayList<>();
 
         ItemDAO myDelicacies = new ItemDAO(getActivity().getApplicationContext());
-
+        Log.d("count", new Integer(myDelicacies.getCount()).toString());
         if(myDelicacies.getCount() == 0){
+            Log.d("sample","sample insert");
             myDelicacies.sample();
         }
         ArrayList<DelicaciesItem> datas = myDelicacies.getAll();

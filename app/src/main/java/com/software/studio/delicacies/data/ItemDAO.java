@@ -155,4 +155,9 @@ public class ItemDAO {
         insert(item);
         insert(item2);
     }
+
+    public void clearDatabase()
+    {
+        database.execSQL("delete from "+ TABLE_NAME);
+    }
 }
