@@ -46,10 +46,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
 
         // Read Text Color
-        settings = MainActivity.getPref();
+     /*   settings = MainActivity.getPref();
         if(settings.getString("bgcolor", null) != null){
             v.setTextColor(Color.WHITE);
         }
+        */
         ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(this);
         return vh;
