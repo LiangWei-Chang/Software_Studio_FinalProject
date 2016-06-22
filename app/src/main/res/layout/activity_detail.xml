@@ -12,7 +12,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:background="#C8C8C8" >
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -27,9 +28,8 @@
             android:text="Large Text"
             android:id="@+id/detail_name"
             android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp" />
-
-
+            android:textSize="30dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,6 +39,7 @@
             android:id="@+id/detail_tel"
             android:clickable="true"
             android:layout_marginTop="20dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +48,7 @@
             android:id="@+id/detail_location"
             android:layout_gravity="left"
             android:layout_marginLeft="30dp"
+            android:textSize="20dp"
              />
 
         <TextView
@@ -57,7 +59,8 @@
             android:id="@+id/detail_comment"
             android:layout_gravity="left"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp" />
+            android:layout_marginLeft="30dp"
+            android:textSize="20dp"/>
 
 
 
