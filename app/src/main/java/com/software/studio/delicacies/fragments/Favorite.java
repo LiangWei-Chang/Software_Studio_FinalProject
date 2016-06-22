@@ -15,12 +15,14 @@ import com.software.studio.delicacies.RecycleViewAdapter;
 import com.software.studio.delicacies.data.DelicaciesItem;
 import com.software.studio.delicacies.data.ItemDAO;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Favorite extends Fragment{
     RecyclerView.LayoutManager mLayoutManager;
     RecycleViewAdapter mAdapter;
     ArrayList<String> data = new ArrayList<>();
+    ArrayList<DelicaciesItem> allList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container ,Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class Favorite extends Fragment{
         recyclerView.setLayoutManager(mLayoutManager);
 
         ItemDAO myFavoriteDelicacies = new ItemDAO(getActivity().getApplicationContext());
+        allList = myFavoriteDelicacies.getAll();
         ArrayList<DelicaciesItem> myFavoriteList = myFavoriteDelicacies.getFavorite();
 
         for(DelicaciesItem item : myFavoriteList){
@@ -43,7 +46,15 @@ public class Favorite extends Fragment{
             @Override
             public void onItemClick(View view, String data) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
-                intent.putExtra("name", data);
+                int position=0;
+                for(int i=0;i<allList.size();i++)
+                {
+                    if(data.equals(allList.get(i).getName()+" Rating : "+allList.get(i).getRating())) {
+                        position = i;
+                        break;
+                    }
+                }
+                intent.putExtra("name", position);
                 startActivity(intent);
             }
         });
