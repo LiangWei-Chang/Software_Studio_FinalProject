@@ -77,6 +77,7 @@ public class Search extends Fragment implements View.OnClickListener {
         for(SearchItem item : SearchList){
             data.add(item.getName());
         }
+        mAdapter.notifyDataSetChanged();
         super.onResume();
     }
 

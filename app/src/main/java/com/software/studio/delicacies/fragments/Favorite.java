@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class Favorite extends Fragment{
     RecycleViewAdapter mAdapter;
     ArrayList<String> data = new ArrayList<>();
     ArrayList<DelicaciesItem> allList;
+    ArrayList<DelicaciesItem> myFavoriteList;
+    ItemDAO myFavoriteDelicacies;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container ,Bundle savedInstanceState) {
@@ -31,13 +34,9 @@ public class Favorite extends Fragment{
         mLayoutManager = new LinearLayoutManager(container.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        ItemDAO myFavoriteDelicacies = new ItemDAO(getActivity().getApplicationContext());
+        myFavoriteDelicacies = new ItemDAO(getActivity().getApplicationContext());
         allList = myFavoriteDelicacies.getAll();
-        ArrayList<DelicaciesItem> myFavoriteList = myFavoriteDelicacies.getFavorite();
 
-        for(DelicaciesItem item : myFavoriteList){
-            data.add(item.getName() + " Rating : " + item.getRating());
-        }
 
         mAdapter = new RecycleViewAdapter(data);
         recyclerView.setAdapter(mAdapter);
@@ -59,6 +58,16 @@ public class Favorite extends Fragment{
         return rootview;
     }
 
-
+    @Override
+    public void onResume(){
+        data.clear();
+        myFavoriteList = myFavoriteDelicacies.getFavorite();
+        Log.d("Favorite_Count", new Integer(myFavoriteList.size()).toString());
+        for(DelicaciesItem item : myFavoriteList){
+            data.add(item.getName() + " Rating : " + item.getRating());
+        }
+        mAdapter.notifyDataSetChanged();
+        super.onResume();
+    }
 
 }
