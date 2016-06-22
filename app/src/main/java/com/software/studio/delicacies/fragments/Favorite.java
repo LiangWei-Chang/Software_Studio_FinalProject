@@ -15,7 +15,6 @@ import com.software.studio.delicacies.RecycleViewAdapter;
 import com.software.studio.delicacies.data.DelicaciesItem;
 import com.software.studio.delicacies.data.ItemDAO;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Favorite extends Fragment{
@@ -46,10 +45,9 @@ public class Favorite extends Fragment{
             @Override
             public void onItemClick(View view, String data) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
-                int position=0;
-                for(int i=0;i<allList.size();i++)
-                {
-                    if(data.equals(allList.get(i).getName()+" Rating : "+allList.get(i).getRating())) {
+                int position = 0;
+                for(int i=0; i<allList.size(); i++) {
+                    if(data.equals(allList.get(i).getName() + " Rating : " + allList.get(i).getRating())) {
                         position = i;
                         break;
                     }
