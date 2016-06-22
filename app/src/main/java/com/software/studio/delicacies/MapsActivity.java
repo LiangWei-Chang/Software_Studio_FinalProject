@@ -25,7 +25,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.software.studio.delicacies.fragments.DirectionsJSONParser;
@@ -45,7 +44,7 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,View.OnClickListener {
 
     GoogleMap mMap;
-    Button button,button2,navi;
+    Button button, button2, navi;
     LatLng current;
     LatLng position;
     @Override
@@ -150,21 +149,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String getDirectionsUrl(LatLng origin,LatLng dest){
 
         // Origin of route
-        String str_origin = "origin="+origin.latitude+","+origin.longitude;
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
 
         // Destination of route
-        String str_dest = "destination="+dest.latitude+","+dest.longitude;
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
 
         // Sensor enabled
         String sensor = "sensor=false";
 
         // Building the parameters to the web service
-        String parameters = str_origin+"&"+str_dest+"&"+sensor;
+        String parameters = str_origin + "&" + str_dest + "&" + sensor;
 
         // Output format
         String output = "json";
 
-        String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
         return url;
     }

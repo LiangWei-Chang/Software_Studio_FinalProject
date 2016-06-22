@@ -20,7 +20,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     // Define Interface
-    public static interface OnRecyclerViewItemClickListener {
+    public interface OnRecyclerViewItemClickListener {
         void onItemClick(View view, String data);
     }
 
@@ -63,10 +63,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         this.mOnItemClickListener = listener;
     }
 
-    public void addItem(String text)
-    {
+    public void addItem(String text) {
         mDataset.add(text);
         this.notifyDataSetChanged();
+    }
 
+    public ArrayList<String> getDataset(){
+        return mDataset;
     }
 }
