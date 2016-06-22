@@ -75,7 +75,7 @@ public class Settings extends Fragment {
                 }
                 else if(data == mAdapter.getDataset().get(4)){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle("Class: Software Studio\nAuthor: Liang-Wei Chang, Ju-Zen Chen");
+                    builder.setTitle("Class: Software Studio\nAuthor: Liang-Wei, Yu-Jen");
                     builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();

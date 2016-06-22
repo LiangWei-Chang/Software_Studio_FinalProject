@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.software.studio.delicacies.FragmentTagsActivity;
+import com.software.studio.delicacies.MainActivity;
 import com.software.studio.delicacies.MapsActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
@@ -50,7 +51,7 @@ public class Search extends Fragment implements View.OnClickListener {
         });
 
         // Set text color
-        if(FragmentTagsActivity.getPref().getString("bgcolor", null) != null){
+        if(MainActivity.getPref().getString("bgcolor", null) != null){
             TextView tv = (TextView) view.findViewById(R.id.search_history);
             tv.setTextColor(Color.WHITE);
         }

@@ -1,6 +1,7 @@
 package com.software.studio.delicacies;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Button login_button;
     private EditText passwordtext;
+    private static SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        if(FragmentTagsActivity.getPref() == null || !FragmentTagsActivity.getPref().getBoolean("needPassword", false)) {
+        settings = getSharedPreferences("Preference",0);
+        if(MainActivity.getPref() == null || !MainActivity.getPref().getBoolean("needPassword", false)) {
             startActivity(new Intent(MainActivity.this, FragmentTagsActivity.class));
         }
     }
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == login_button){
-            String settedpassword = FragmentTagsActivity.getPref().getString("password", null).toString();
+            String settedpassword = MainActivity.getPref().getString("password", null).toString();
             Log.d("pass", settedpassword);
             if(settedpassword != null && settedpassword.equals(passwordtext.getText().toString())){
                 startActivity(new Intent(MainActivity.this, FragmentTagsActivity.class));
@@ -49,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(getApplicationContext(), R.string.msg_WrongPassword, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public static SharedPreferences getPref(){
+        return settings;
     }
 
 

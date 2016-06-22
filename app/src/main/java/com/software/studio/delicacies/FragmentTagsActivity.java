@@ -26,7 +26,7 @@ public class FragmentTagsActivity extends FragmentActivity implements View.OnCli
     private List<Fragment> fragments;
     private FragmentManager frmanager;
     private int selected_fragment = 0;
-    private static SharedPreferences settings;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -39,23 +39,22 @@ public class FragmentTagsActivity extends FragmentActivity implements View.OnCli
     }
 
     private View CheckBackGroundColor(View view) {
-        settings = getSharedPreferences("Preference", 0);
-        if(settings.getString("bgcolor", null) == null){
+        if(MainActivity.getPref().getString("bgcolor", null) == null){
             view.setBackgroundColor(getResources().getColor(R.color.light_blue));
         }
-        else if(settings.getString("bgcolor", null).equals("red")){
+        else if(MainActivity.getPref().getString("bgcolor", null).equals("red")){
             view.setBackgroundColor(getResources().getColor(R.color.bgred));
         }
-        else if(settings.getString("bgcolor", null).equals("blue")){
+        else if(MainActivity.getPref().getString("bgcolor", null).equals("blue")){
             view.setBackgroundColor(getResources().getColor(R.color.bgblue));
         }
-        else if(settings.getString("bgcolor", null).equals("green")){
+        else if(MainActivity.getPref().getString("bgcolor", null).equals("green")){
             view.setBackgroundColor(getResources().getColor(R.color.bggreen));
         }
-        else if(settings.getString("bgcolor", null).equals("orange")){
+        else if(MainActivity.getPref().getString("bgcolor", null).equals("orange")){
             view.setBackgroundColor(getResources().getColor(R.color.bgorange));
         }
-        else if(settings.getString("bgcolor", null).equals("purple")){
+        else if(MainActivity.getPref().getString("bgcolor", null).equals("purple")){
             view.setBackgroundColor(getResources().getColor(R.color.bgpurple));
         }
         return view;
@@ -176,7 +175,5 @@ public class FragmentTagsActivity extends FragmentActivity implements View.OnCli
         img_settings.setImageResource(R.drawable.ic_menu_user_off);
     }
 
-    public static SharedPreferences getPref(){
-        return settings;
-    }
+
 }
