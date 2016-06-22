@@ -111,8 +111,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/detail_tel"
-            android:clickable="true"
-            android:layout_marginTop="10dp"/>
+            android:clickable="true"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,6 +134,27 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             android:textSize="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <ImageButton
+                android:id="@+id/button_to_google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/google"
+                android:background="@android:color/transparent"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/button_to_google_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/google_map"
+                android:background="@android:color/transparent"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView

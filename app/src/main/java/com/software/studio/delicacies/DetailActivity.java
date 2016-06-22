@@ -1,5 +1,6 @@
 package com.software.studio.delicacies;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
     TextView title,tel,location,comment,opentime;
-    ImageButton button_favorite;
+    ImageButton button_favorite, button_toGoogle, button_toGoogleMap;
     int name;
     ArrayList<DelicaciesItem> list;
     DelicaciesItem item;
@@ -38,6 +39,8 @@ public class DetailActivity extends AppCompatActivity {
         comment = (TextView)this.findViewById(R.id.detail_comment);
         opentime = (TextView)this.findViewById(R.id.detail_opentime);
         button_favorite = (ImageButton) findViewById(R.id.button_favorite);
+        button_toGoogle = (ImageButton) findViewById(R.id.button_to_google);
+        button_toGoogleMap = (ImageButton) findViewById(R.id.button_to_google_map);
 
         Ratings.add(R.id.rating1);
         Ratings.add(R.id.rating2);
@@ -95,5 +98,22 @@ public class DetailActivity extends AppCompatActivity {
 
         });
 
+        button_toGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                intent.putExtra(SearchManager.QUERY, item.getName());
+                startActivity(intent);
+            }
+        });
+
+        button_toGoogleMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                intent.putExtra("LocationName", item.getLocation());
+                startActivity(intent);
+            }
+        });
     }
 }
