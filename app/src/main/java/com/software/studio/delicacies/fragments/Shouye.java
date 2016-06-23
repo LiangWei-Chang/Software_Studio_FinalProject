@@ -2,6 +2,7 @@ package com.software.studio.delicacies.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.software.studio.delicacies.AddDataActivity;
 import com.software.studio.delicacies.DetailActivity;
 import com.software.studio.delicacies.R;
 import com.software.studio.delicacies.RecycleViewAdapter;
@@ -26,6 +27,7 @@ public class Shouye extends Fragment {
         RecyclerView.LayoutManager mLayoutManager;
         final RecycleViewAdapter mAdapter;
         ArrayList<String> data = new ArrayList<>();
+        FloatingActionButton fab;
 
         ItemDAO myDelicacies = new ItemDAO(getActivity().getApplicationContext());
         Log.d("count", new Integer(myDelicacies.getCount()).toString());
@@ -64,6 +66,16 @@ public class Shouye extends Fragment {
                 startActivity(intent);
             }
         });
+
+        fab = (FloatingActionButton) getActivity().findViewById(R.id.floating_action_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddDataActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 }
