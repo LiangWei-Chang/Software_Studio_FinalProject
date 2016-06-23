@@ -67,7 +67,8 @@ public class Shouye extends Fragment {
             }
         });
 
-        fab = (FloatingActionButton) getActivity().findViewById(R.id.floating_action_button);
+        fab = (FloatingActionButton) rootView.findViewById(R.id.floating_action_button);
+        assert fab!=null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

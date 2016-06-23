@@ -28,7 +28,6 @@ public class AddDataActivity extends AppCompatActivity {
         Button Yes = (Button) findViewById(R.id.Add_yes);
         Button No = (Button) findViewById(R.id.Add_no);
 
-        assert Yes != null;
         Yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +71,8 @@ public class AddDataActivity extends AppCompatActivity {
                 ItemDAO myDelicacies = new ItemDAO(getApplicationContext());
                 DelicaciesItem item = new DelicaciesItem(0, add_name, add_tel, add_location, add_rating, add_comment, add_opentime, 0);
                 myDelicacies.insert(item);
+
+                finish();
             }
         });
 
